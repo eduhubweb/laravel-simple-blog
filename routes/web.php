@@ -11,9 +11,22 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('dashboard','DashboardController@index')->name('dashboard');
+Route::get('login','AdminLoginController@adminLoginForm')->name('admin.LoginForm');
+Route::post('login','AdminLoginController@adminLogin')->name('admin.login');
 Route::get('profile','ProfileController@profile')->name('user.profile');
+Route::middleware('auth')->group(function ()
+{
+    Route::get('dashboard','DashboardController@index')->name('dashboard');
+    Route::get('profile','ProfileController@profile')->name('user.profile');
+});
+Route::get('emergency-logout', function () {
+    auth()->logout();
+    return redirect()->route('admin.LoginForm');
+});
