@@ -4,7 +4,7 @@
 <html dir="ltr" lang="en">
 
 <head>
-    @include('layouts.theme1._head');
+    @include('layouts.theme1._head')
 </head>
 
 <body>
@@ -26,7 +26,7 @@
     <!-- Topbar header - style you can find in pages.scss -->
     <!-- ============================================================== -->
     <header class="topbar" data-navbarbg="skin5">
-        @include('layouts.theme1._header');
+        @include('layouts.theme1._header')
     </header>
     <!-- ============================================================== -->
     <!-- End Topbar header -->
@@ -72,7 +72,7 @@
         <!-- Container fluid  -->
         <!-- ============================================================== -->
         <div class="container-fluid">
-            @yield('content');
+            @yield('content')
         </div>
         <!-- ============================================================== -->
 
