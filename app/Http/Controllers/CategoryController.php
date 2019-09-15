@@ -15,7 +15,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $data['title']='Category List';
+        $data['categories']=category::orderBy('id','asc')->get();
+        $data['serialize']=1;
+        return view('admin.category.index',$data);
+
     }
 
     /**
@@ -66,7 +70,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+       $data['title']='Edit category';
+       $data['category']=category::findOrFail($id);
+        return view('admin.category.edit',$data);
     }
 
     /**
@@ -78,7 +84,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+        ]);
+        $data['name']=$request->name;
+        $data['details']=$request->details;
+        category::findOrFail($id)->update($data);
+        Session::flash('message','Category updated Succesfully');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -89,6 +102,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        category::findOrFail($id)->delete($id);
+        Session::flash('message','Category Deleted Succesfully');
+        return redirect()->route('category.index');
     }
 }

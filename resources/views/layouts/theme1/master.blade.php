@@ -52,6 +52,7 @@
             <div class="row align-items-center">
                 <div class="col-12">
                     <h4 class="page-title text-center">{{isset($title)?$title:config('app.name')}}</h4>
+
                     <div class="d-flex align-items-center">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
@@ -71,7 +72,8 @@
         <!-- Container fluid  -->
         <!-- ============================================================== -->
         <div class="container-fluid">
-            @yield('content');
+            @include('layouts.theme1._message')
+            @yield('content')
           </div>
             <!-- ============================================================== -->
 
